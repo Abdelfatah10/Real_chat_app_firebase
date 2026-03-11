@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ==================== META TAGS ==================== -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Chat Dashboard</title>
+
+    <!-- ==================== STYLESHEETS ==================== -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ==================== TAILWIND CONFIGURATION ==================== -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ec5b13",
+              "background-light": "#f8f6f6",
+              "background-dark": "#221610",
+            },
+            fontFamily: {
+              display: ["Public Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex">
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="w-80 md:w-96 border-r border-primary/10 flex flex-col h-screen bg-white dark:bg-background-dark/50 overflow-hidden shrink-0">
+    <!-- User Profile Header -->
+        <div class="p-6 flex items-center justify-between border-b border-primary/5">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 bg-cover bg-center" data-alt="User profile picture with orange accent" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBay-ahTyxIqzJcyKbroXSAClGMt1DDz3Vhvdd69eXT-ZTwc3OTDMo8qI4x_vf6X3PRwePxmqtu2tpLHBoy_S7pT8oU1y4wzGie0V4uzO8GjGVMh9N2Lu_u9tFube84PigHCYXHhBkejBbyUPoAeUsZQOFSrfV_MN5ALxw_mR54iLC4Yf_FgXleprmOeV5Fu23zwVLD0JB2NY2mZhNiiaQfCcpMRIZT19RNasna_dFLBzHSW79nkAF-a_uXwmHSVUbCLk4Bv-W67Utx')"></div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-background-dark rounded-full"></div>
+                </div>
+                <div>
+                    <h2 class="text-sm font-semibold">Alex Rivers</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Available</p>
+                </div>
+            </div>
+            <button class="p-2 rounded-xl hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">more_vert</span>
+            </button>
+        </div>
+        <!-- Search Bar -->
+        <div class="px-6 py-4">
+            <div class="relative group">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                <input class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 transition-all outline-none" placeholder="Search conversations..." type="text"/>
+            </div>
+        </div>
+        <!-- Contact List -->
+        <div class="flex-1 overflow-y-auto">
+        <!-- Active Contact -->
+            <div class="px-4">
+    <div class="flex items-center gap-4 p-3 rounded-xl bg-primary/10 cursor-pointer">
+    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Jordan Smith" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSx7BFyvKaGp1I4DA4zIr15QkpN7qyc3d2x3Je5n44c_gNVrz7DRQ1ytGRqVMlrFEpXAK-S6ioZfr62ZwT3Y-MdArBbnMv4r-Q1DIAmYHhFzuQCNttZEFPCuF0YVS109Bkk9YIEpfoZ4CATDGnJj9o6XMk08rBOsNYU-InE71zxVVPnZavBJyVl5HaAIiirgCxffj2gv1cdHJfhbGXpSepWjFxTChZxsBUmX3wyGx3Du0PvtbFZWeqbegf_xlDnzOfqCwkg7-L7txb')"></div>
+    <div class="flex-1 min-w-0">
+    <div class="flex justify-between items-baseline">
+    <h3 class="text-sm font-semibold truncate">Jordan Smith</h3>
+    <span class="text-[10px] text-primary font-medium">12:45 PM</span>
+    </div>
+    <p class="text-xs text-slate-600 dark:text-slate-300 truncate font-medium">Can you send the file?</p>
+    </div>
+    </div>
+    </div>
+    <!-- Other Contacts -->
+    <div class="px-4 mt-2 space-y-1">
+    <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 cursor-pointer transition-colors">
+    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Sarah Wilson" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFuFkEzumiSX65b4uuSuMUAM88peS9Y7DucR7_7e7O5bB8cNqibwYtQr-L3OqPy0BJG5B6_8jMkd3Fh5mXFiDgoiDr25Y6LQ8xzQ3exS9Sem4i-lYvMxHi--SEcdX3MBHvExEq32Kg3cqqhgp6t5EJ3Kj5V7onhb_qrceFEojmbQ_z0aPtPY_OBqf1DBh4H3ceFYtP64D-WBm8BFCpUC4HesbLJyPiBGCtAN-vtKAtHDRvPqE3pV_DNdb7em4aVOls6h6AVQgNP3hO')"></div>
+    <div class="flex-1 min-w-0">
+    <div class="flex justify-between items-baseline">
+    <h3 class="text-sm font-medium truncate text-slate-700 dark:text-slate-200">Sarah Wilson</h3>
+    <span class="text-[10px] text-slate-400">Yesterday</span>
+    </div>
+    <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Let's catch up later!</p>
+    </div>
+    <div class="w-2 h-2 bg-primary rounded-full"></div>
+    </div>
+    <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 cursor-pointer transition-colors">
+    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Mike Ross" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRgCdWlSdFTFdydrA1AisiZjtA5OBsupbU0FYk73bfbqfVGHWTEgbtWHh8XcQMFdPdWU_hQN8wu4JsCNj1nLN9l8UAmLr-M7i_jM6hNMg6xQZnEY36cmxtnZpIAvCfYhQLQz15d7s9EWCzXvexINclBdTGehkkDv7UDsc6sFfuuDPFmRW6KmkrgF9yZt87JI0h8YQJx2ILIpig2TJSsxfgKQU3v5Y_EvS59EBu9uURRjoklnCQ6xjdjJWlJ6q67ZYxHT_l0DcqlFU5')"></div>
+    <div class="flex-1 min-w-0">
+    <div class="flex justify-between items-baseline">
+    <h3 class="text-sm font-medium truncate text-slate-700 dark:text-slate-200">Mike Ross</h3>
+    <span class="text-[10px] text-slate-400">Monday</span>
+    </div>
+    <p class="text-xs text-slate-500 dark:text-slate-400 truncate">The project looks great so far.</p>
+    </div>
+    </div>
+    <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 cursor-pointer transition-colors">
+    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Emma Stone" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbZteDqC9VlTxH6V9N5KJm7e1ZXhpy-bHyqBHhNBgSvc-nMYoUQEeFuRoEdy-U7fmV3nYsOIoXqXaUu8dcehtGhl6J7PsXifqKbQvZwtlsYeaHB4jNFT87c_fVUIBIaVYPNDA5F7zyGZf0suZ_3fh_rwweMsngHDtdzxBKk2gu-fAF2iVXvODXKW1a6mb-fHIF46J9VzQDt45xRxRm9UwpJIPAjxCgmDKR71qda0VQOgTkyPoKRdEKxKHaKRslSBPIaiUQzcB5Zqb2')"></div>
+    <div class="flex-1 min-w-0">
+    <div class="flex justify-between items-baseline">
+    <h3 class="text-sm font-medium truncate text-slate-700 dark:text-slate-200">Emma Stone</h3>
+    <span class="text-[10px] text-slate-400">2d ago</span>
+    </div>
+    <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Did you see the latest update?</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- New Chat Button -->
+    <div class="p-6">
+    <button class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+    <span class="material-symbols-outlined">add</span>
+    <span>New Message</span>
+    </button>
+    </div>
+    </aside>
+    <!-- ==================== MAIN CHAT AREA ==================== -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-white dark:bg-background-dark/20 relative">
+    <!-- ==================== CHAT HEADER ==================== -->
+    <header class="h-20 px-8 border-b border-primary/5 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-md z-10 shrink-0">
+    <div class="flex items-center gap-4">
+    <div class="w-10 h-10 rounded-full bg-cover bg-center" data-alt="Current contact Jordan Smith profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3fYrzrxI5f4_d3gdM2XePZq_SqnSX-6-mYdrUX2QeXLK_BIwRZBURNjnA0qH2gb43MjCiheNyaJ4YTqoUyPeOCZ9nLo-3aseZnv2NBk3e5HuEJMrQgDFRoLJYvlwQa7C62nDrRz9AuG0JuiQihCKqehlyj1LxrL4maj-P2hSKe1k9I1FuHHFf0rkvt9euJQet4eQd3iw71mZeeMHGSZd4co4ptI3Il1hJIEOi0tcRuPwyZkACMB6heLVblJuXt70fmD7dkM8VLtSO')"></div>
+    <div>
+    <h1 class="text-base font-bold text-slate-900 dark:text-slate-100">Jordan Smith</h1>
+    <div class="flex items-center gap-1.5">
+    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+    <span class="text-xs text-slate-500 dark:text-slate-400">Online</span>
+    </div>
+    </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors"
+      >
+        <span class="material-symbols-outlined">call</span>
+      </button>
+      <button
+        class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors"
+      >
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <div class="w-px h-6 bg-slate-200 dark:bg-primary/10 mx-2"></div>
+      <button
+        class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors"
+      >
+        <span class="material-symbols-outlined">info</span>
+      </button>
+    </div>
+    </header>
+    <!-- ==================== MESSAGE AREA ==================== -->
+    <div class="flex-1 overflow-y-auto p-8 space-y-6">
+    <!-- Timestamp Separator -->
+    <div class="flex justify-center">
+    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100 dark:bg-background-dark/50 px-3 py-1 rounded-full">Today, 12:30 PM</span>
+    </div>
+    <!-- Received Message -->
+    <div class="flex gap-4 items-end">
+    <div class="w-8 h-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Jordan profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBL3Qy9JqyvzxOrzn2Ey9imRF_ZiH19fVDtgJpGVa8U3WuY6mSgW9bnKbNouqSg4f3poDqNszeaRwkoUKMHbabytFXBGd88oRO3jvnX6VpYKS2kHe8XkGPdyA9iz6DY6cbI_-e1p6co5L5h6P_HoCH7neJ8VXZWCM23JthoUG49DxZRwiLxim4K7IiJpnaSaK5PVQ1oXKwkEtFj85p93Zd-DMko40mzMJ392ZeVI_nXal-q-dkBZptz88si7jhq4XKnIUYraAUb7azz')"></div>
+    <div class="max-w-[70%] space-y-2">
+    <div class="bg-slate-100 dark:bg-background-dark p-4 rounded-2xl rounded-bl-none shadow-sm text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+                            Hey Alex! Hope your week is going well. Did you have a chance to look at the branding guidelines I sent over?
+                        </div>
+    <p class="text-[10px] text-slate-400 ml-1">12:32 PM</p>
+    </div>
+    </div>
+    <!-- Sent Message -->
+    <div class="flex gap-4 items-end justify-end">
+    <div class="max-w-[70%] space-y-2 flex flex-col items-end">
+    <div class="bg-primary text-white p-4 rounded-2xl rounded-br-none shadow-md shadow-primary/10 text-sm leading-relaxed">
+                            Hey Jordan! Yes, I just went through them. The color palette looks really solid, especially the orange accents. 
+                        </div>
+    <div class="flex items-center gap-1.5 mr-1">
+    <p class="text-[10px] text-slate-400">12:35 PM</p>
+    <span class="material-symbols-outlined text-primary text-[14px]">done_all</span>
+    </div>
+    </div>
+    </div>
+    <!-- Received Message -->
+    <div class="flex gap-4 items-end">
+    <div class="w-8 h-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Jordan profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFZJrRIuziCpbtBL4gCs9QXQAPsDzMquH1ltIIigklUsESlhuHtt-A8leYTPVdY2-D1fhtDxIwovMEseDp3YnzRPwB1z9ORrdCUUNYi-oFeQ6HJMBp9VWIBSyQ1V4-TeCfbt0jMtD4Y4cwSoaON6alpms6gSVG00PqZuoF-zB_utCOc9kuCYKUwiwzt1_xr7qG4XxKy02wF5kpmywSwcCZ2Xa06F2kBujpXPws39KPypcVI6BR1Zi0RFxsufEuCENyZ90fD5a7U1-0')"></div>
+    <div class="max-w-[70%] space-y-2">
+    <div class="bg-slate-100 dark:bg-background-dark p-4 rounded-2xl rounded-bl-none shadow-sm text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+                            Glad you like them! I was thinking of making the primary color a bit more vibrant. Can you send the file with the logo mockup? I'd like to test it.
+                        </div>
+    <p class="text-[10px] text-slate-400 ml-1">12:45 PM</p>
+    </div>
+    </div>
+    <!-- Typing Indicator -->
+    <div class="flex gap-4 items-end">
+    <div class="w-8 h-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Jordan profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8hSMrMZuGXWM3M7a0V5q_6r1oYoj2e-Vyk8do09eauxwj07-nB5F-HFMrpOgW7sTcgKWl7_C4k2tKEpFbOidOQMPNH9UMSwl5BbzU5kThedgLdTL8URBs_2B7K1faCS3MtPtc3ibSf_Ak_fo3ZvOtjZGRgcsBV-Pc6nGdxMW_hI9UJRX6Ble9AqqTlZnRUk-4ycW1jDj3X2CNmT46hn5N4M5mc3cc9kxvT-zaP9SGa1k_9wFUxMW9ZHt0idcjXgYSnLofUx_DYxlY')"></div>
+    <div class="bg-slate-100 dark:bg-background-dark px-4 py-3 rounded-2xl rounded-bl-none shadow-sm">
+    <div class="flex gap-1">
+    <div class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse delay-150"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse delay-300"></div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- ==================== INPUT AREA ==================== -->
+    <footer
+      class="p-6 bg-white dark:bg-background-dark/50 border-t border-primary/5 shrink-0"
+    >
+      <div class="max-w-4xl mx-auto flex items-center gap-4">
+        <div class="flex-1 relative group">
+          <input
+            class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 transition-all outline-none"
+            placeholder="Type your message here..."
+            type="text"
+          />
+        </div>
+        <button
+          class="bg-primary hover:bg-primary/90 text-white p-3 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </div>
+    </footer>
+    </main>
+</body>
+<script type="module" src="./js/chat.js"></script>
+</html>
