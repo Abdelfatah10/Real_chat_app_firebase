@@ -74,7 +74,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-    import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+    import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 
     
 
@@ -104,18 +104,12 @@
 
             await saveUserData(user);
 
-            const snapshot = await get(ref(database, "users/" + user.uid));
-
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-
-                localStorage.setItem("currentUser", JSON.stringify({
-                    uid: user.uid,
-                    name: userData.name,
-                    email: userData.email,
-                    profile_picture: userData.profile_picture
-                }));
-            }
+            localStorage.setItem("currentUser", JSON.stringify({
+                uid: user.uid,
+                name: userData.name,
+                email: userData.email,
+                profile_picture: userData.profile_picture
+            }));
 
             window.location.href = "./chat.html";
 
@@ -126,15 +120,21 @@
     });
 
     async function saveUserData(user) {
-        try {
-            await set(ref(database, "users/" + user.uid), {
+        const userRef = ref(database, "users/" + user.uid);
+        const snapshot = await get(userRef);
+
+        if (!snapshot.exists()) {
+            await set(userRef, {
                 name: user.displayName,
                 email: user.email,
                 profile_picture: user.photoURL,
+                createdAt: Date.now(),
                 lastSeen: Date.now()
             });
-        } catch (error) {
-            console.error("Error saving user data:", error);
+        } else {
+            await update(userRef, {
+                lastSeen: Date.now()
+            });
         }
     }
 </script>
