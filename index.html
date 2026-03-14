@@ -106,9 +106,9 @@
 
             localStorage.setItem("currentUser", JSON.stringify({
                 uid: user.uid,
-                name: userData.name,
-                email: userData.email,
-                profile_picture: userData.profile_picture
+                name: user.displayName,
+                email: user.email,
+                profile_picture: user.photoURL
             }));
 
             window.location.href = "./chat.html";
