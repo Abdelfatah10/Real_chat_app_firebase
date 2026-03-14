@@ -73,6 +73,7 @@
 </body>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+    import { getAnalytics } from "firebase/analytics";
     import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
     import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 
@@ -91,6 +92,7 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const database = getDatabase(app);
 

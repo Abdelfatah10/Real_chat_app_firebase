@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getAnalytics } from "firebase/analytics";
 import { getDatabase, ref, get, push, set, onValue } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
@@ -17,6 +18,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const db = getDatabase();
 const auth = getAuth(app);
 
