@@ -600,7 +600,7 @@ async function initializeMyApp() {
             setupLogout();
             setupEmojiPicker();
         } else {
-            window.location.href = "/";
+            window.location.href = "./";
         }
     });
 }
