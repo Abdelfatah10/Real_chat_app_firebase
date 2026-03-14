@@ -100,12 +100,7 @@
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                set(ref(database, "users/" + user.uid), {
-                    name: user.displayName,
-                    email: user.email,
-                    profile_picture: user.photoURL,
-                    lastSeen: Date.now()
-                });
+                saveUserData(user);
                 get(ref(database, "users/" + user.uid)).then((snapshot) => {
                     if (snapshot.exists()) {
                         const userData = snapshot.val();
@@ -129,5 +124,18 @@
                 alert("An error occurred during sign-in. Please try again.");
         });
     });
+
+    async function saveUserData(user) {
+        try {
+            await set(ref(database, "users/" + user.uid), {
+                name: user.displayName,
+                email: user.email,
+                profile_picture: user.photoURL,
+                lastSeen: Date.now()
+            });
+        } catch (error) {
+            console.error("Error saving user data:", error);
+        }
+    }
 </script>
 </html>
