@@ -95,34 +95,34 @@
     const database = getDatabase(app);
 
     const signInButton = document.querySelector("button");
-    signInButton.addEventListener("click", () => {
-        const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const user = result.user;
-                saveUserData(user);
-                get(ref(database, "users/" + user.uid)).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        localStorage.setItem("currentUser", JSON.stringify({
-                            uid: user.uid,
-                            name: userData.name,
-                            email: userData.email,
-                            profile_picture: userData.profile_picture
-                        }));
-                    } else {
-                        console.error("No user data found in database.");
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
+    signInButton.addEventListener("click", async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(auth, provider);
 
-                window.location.href = "./chat.html";
-            })
-            .catch((error) => {
-                console.error("Error during sign-in:", error);
-                alert("An error occurred during sign-in. Please try again.");
-        });
+            const user = result.user;
+
+            await saveUserData(user);
+
+            const snapshot = await get(ref(database, "users/" + user.uid));
+
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+
+                localStorage.setItem("currentUser", JSON.stringify({
+                    uid: user.uid,
+                    name: userData.name,
+                    email: userData.email,
+                    profile_picture: userData.profile_picture
+                }));
+            }
+
+            window.location.href = "./chat.html";
+
+        } catch (error) {
+            console.error("Error during sign-in:", error);
+            alert("An error occurred during sign-in.");
+        }
     });
 
     async function saveUserData(user) {
