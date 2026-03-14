@@ -1,234 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- ==================== META TAGS ==================== -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real-Time Chat Dashboard</title>
 
-    <!-- ==================== STYLESHEETS ==================== -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- ==================== TAILWIND CONFIGURATION ==================== -->
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#ec5b13",
-              "background-light": "#f8f6f6",
-              "background-dark": "#221610",
-            },
-            fontFamily: {
-              display: ["Public Sans", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-            },
-          },
-        },
-      };
-    </script>
-  </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex">
-    <!-- ==================== SIDEBAR ==================== -->
-    <aside class="w-80 md:w-96 border-r border-primary/10 flex flex-col h-screen bg-white dark:bg-background-dark/50 overflow-hidden shrink-0">
-    <!-- User Profile Header -->
-        <div class="p-6 flex items-center justify-between border-b border-primary/5">
-            <div class="flex items-center gap-3">
-                <div class="relative">
-                    <div class="w-10 h-10 rounded-full bg-primary/20 bg-cover bg-center" data-alt="User profile picture with orange accent" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBay-ahTyxIqzJcyKbroXSAClGMt1DDz3Vhvdd69eXT-ZTwc3OTDMo8qI4x_vf6X3PRwePxmqtu2tpLHBoy_S7pT8oU1y4wzGie0V4uzO8GjGVMh9N2Lu_u9tFube84PigHCYXHhBkejBbyUPoAeUsZQOFSrfV_MN5ALxw_mR54iLC4Yf_FgXleprmOeV5Fu23zwVLD0JB2NY2mZhNiiaQfCcpMRIZT19RNasna_dFLBzHSW79nkAF-a_uXwmHSVUbCLk4Bv-W67Utx')"></div>
-                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-background-dark rounded-full"></div>
-                </div>
-                <div>
-                    <h2 class="text-sm font-semibold">Alex Rivers</h2>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Available</p>
-                </div>
-            </div>
-            <button class="p-2 rounded-xl hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors">
-                <span class="material-symbols-outlined text-[20px]">more_vert</span>
-            </button>
-        </div>
-        <!-- Search Bar -->
-        <div class="px-6 py-4">
-            <div class="relative group">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
-                <input class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 transition-all outline-none" placeholder="Search conversations..." type="text"/>
-            </div>
-        </div>
-        <!-- Contact List -->
-        <div class="flex-1 overflow-y-auto">
-        <!-- Active Contact -->
-            <div class="px-4">
-    <div class="flex items-center gap-4 p-3 rounded-xl bg-primary/10 cursor-pointer">
-    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Jordan Smith" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSx7BFyvKaGp1I4DA4zIr15QkpN7qyc3d2x3Je5n44c_gNVrz7DRQ1ytGRqVMlrFEpXAK-S6ioZfr62ZwT3Y-MdArBbnMv4r-Q1DIAmYHhFzuQCNttZEFPCuF0YVS109Bkk9YIEpfoZ4CATDGnJj9o6XMk08rBOsNYU-InE71zxVVPnZavBJyVl5HaAIiirgCxffj2gv1cdHJfhbGXpSepWjFxTChZxsBUmX3wyGx3Du0PvtbFZWeqbegf_xlDnzOfqCwkg7-L7txb')"></div>
-    <div class="flex-1 min-w-0">
-    <div class="flex justify-between items-baseline">
-    <h3 class="text-sm font-semibold truncate">Jordan Smith</h3>
-    <span class="text-[10px] text-primary font-medium">12:45 PM</span>
-    </div>
-    <p class="text-xs text-slate-600 dark:text-slate-300 truncate font-medium">Can you send the file?</p>
-    </div>
-    </div>
-    </div>
-    <!-- Other Contacts -->
-    <div class="px-4 mt-2 space-y-1">
-    <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 cursor-pointer transition-colors">
-    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Sarah Wilson" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFuFkEzumiSX65b4uuSuMUAM88peS9Y7DucR7_7e7O5bB8cNqibwYtQr-L3OqPy0BJG5B6_8jMkd3Fh5mXFiDgoiDr25Y6LQ8xzQ3exS9Sem4i-lYvMxHi--SEcdX3MBHvExEq32Kg3cqqhgp6t5EJ3Kj5V7onhb_qrceFEojmbQ_z0aPtPY_OBqf1DBh4H3ceFYtP64D-WBm8BFCpUC4HesbLJyPiBGCtAN-vtKAtHDRvPqE3pV_DNdb7em4aVOls6h6AVQgNP3hO')"></div>
-    <div class="flex-1 min-w-0">
-    <div class="flex justify-between items-baseline">
-    <h3 class="text-sm font-medium truncate text-slate-700 dark:text-slate-200">Sarah Wilson</h3>
-    <span class="text-[10px] text-slate-400">Yesterday</span>
-    </div>
-    <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Let's catch up later!</p>
-    </div>
-    <div class="w-2 h-2 bg-primary rounded-full"></div>
-    </div>
-    <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 cursor-pointer transition-colors">
-    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Mike Ross" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRgCdWlSdFTFdydrA1AisiZjtA5OBsupbU0FYk73bfbqfVGHWTEgbtWHh8XcQMFdPdWU_hQN8wu4JsCNj1nLN9l8UAmLr-M7i_jM6hNMg6xQZnEY36cmxtnZpIAvCfYhQLQz15d7s9EWCzXvexINclBdTGehkkDv7UDsc6sFfuuDPFmRW6KmkrgF9yZt87JI0h8YQJx2ILIpig2TJSsxfgKQU3v5Y_EvS59EBu9uURRjoklnCQ6xjdjJWlJ6q67ZYxHT_l0DcqlFU5')"></div>
-    <div class="flex-1 min-w-0">
-    <div class="flex justify-between items-baseline">
-    <h3 class="text-sm font-medium truncate text-slate-700 dark:text-slate-200">Mike Ross</h3>
-    <span class="text-[10px] text-slate-400">Monday</span>
-    </div>
-    <p class="text-xs text-slate-500 dark:text-slate-400 truncate">The project looks great so far.</p>
-    </div>
-    </div>
-    <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 cursor-pointer transition-colors">
-    <div class="w-12 h-12 rounded-full bg-cover bg-center shrink-0" data-alt="Contact profile image Emma Stone" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbZteDqC9VlTxH6V9N5KJm7e1ZXhpy-bHyqBHhNBgSvc-nMYoUQEeFuRoEdy-U7fmV3nYsOIoXqXaUu8dcehtGhl6J7PsXifqKbQvZwtlsYeaHB4jNFT87c_fVUIBIaVYPNDA5F7zyGZf0suZ_3fh_rwweMsngHDtdzxBKk2gu-fAF2iVXvODXKW1a6mb-fHIF46J9VzQDt45xRxRm9UwpJIPAjxCgmDKR71qda0VQOgTkyPoKRdEKxKHaKRslSBPIaiUQzcB5Zqb2')"></div>
-    <div class="flex-1 min-w-0">
-    <div class="flex justify-between items-baseline">
-    <h3 class="text-sm font-medium truncate text-slate-700 dark:text-slate-200">Emma Stone</h3>
-    <span class="text-[10px] text-slate-400">2d ago</span>
-    </div>
-    <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Did you see the latest update?</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- New Chat Button -->
-    <div class="p-6">
-    <button class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
-    <span class="material-symbols-outlined">add</span>
-    <span>New Message</span>
-    </button>
-    </div>
-    </aside>
-    <!-- ==================== MAIN CHAT AREA ==================== -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-white dark:bg-background-dark/20 relative">
-    <!-- ==================== CHAT HEADER ==================== -->
-    <header class="h-20 px-8 border-b border-primary/5 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-md z-10 shrink-0">
-    <div class="flex items-center gap-4">
-    <div class="w-10 h-10 rounded-full bg-cover bg-center" data-alt="Current contact Jordan Smith profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3fYrzrxI5f4_d3gdM2XePZq_SqnSX-6-mYdrUX2QeXLK_BIwRZBURNjnA0qH2gb43MjCiheNyaJ4YTqoUyPeOCZ9nLo-3aseZnv2NBk3e5HuEJMrQgDFRoLJYvlwQa7C62nDrRz9AuG0JuiQihCKqehlyj1LxrL4maj-P2hSKe1k9I1FuHHFf0rkvt9euJQet4eQd3iw71mZeeMHGSZd4co4ptI3Il1hJIEOi0tcRuPwyZkACMB6heLVblJuXt70fmD7dkM8VLtSO')"></div>
-    <div>
-    <h1 class="text-base font-bold text-slate-900 dark:text-slate-100">Jordan Smith</h1>
-    <div class="flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-    <span class="text-xs text-slate-500 dark:text-slate-400">Online</span>
-    </div>
-    </div>
-    </div>
-    <div class="flex items-center gap-2">
-      <button
-        class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors"
-      >
-        <span class="material-symbols-outlined">call</span>
-      </button>
-      <button
-        class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors"
-      >
-        <span class="material-symbols-outlined">search</span>
-      </button>
-      <div class="w-px h-6 bg-slate-200 dark:bg-primary/10 mx-2"></div>
-      <button
-        class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-colors"
-      >
-        <span class="material-symbols-outlined">info</span>
-      </button>
-    </div>
-    </header>
-    <!-- ==================== MESSAGE AREA ==================== -->
-    <div class="flex-1 overflow-y-auto p-8 space-y-6">
-    <!-- Timestamp Separator -->
-    <div class="flex justify-center">
-    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100 dark:bg-background-dark/50 px-3 py-1 rounded-full">Today, 12:30 PM</span>
-    </div>
-    <!-- Received Message -->
-    <div class="flex gap-4 items-end">
-    <div class="w-8 h-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Jordan profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBL3Qy9JqyvzxOrzn2Ey9imRF_ZiH19fVDtgJpGVa8U3WuY6mSgW9bnKbNouqSg4f3poDqNszeaRwkoUKMHbabytFXBGd88oRO3jvnX6VpYKS2kHe8XkGPdyA9iz6DY6cbI_-e1p6co5L5h6P_HoCH7neJ8VXZWCM23JthoUG49DxZRwiLxim4K7IiJpnaSaK5PVQ1oXKwkEtFj85p93Zd-DMko40mzMJ392ZeVI_nXal-q-dkBZptz88si7jhq4XKnIUYraAUb7azz')"></div>
-    <div class="max-w-[70%] space-y-2">
-    <div class="bg-slate-100 dark:bg-background-dark p-4 rounded-2xl rounded-bl-none shadow-sm text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
-                            Hey Alex! Hope your week is going well. Did you have a chance to look at the branding guidelines I sent over?
-                        </div>
-    <p class="text-[10px] text-slate-400 ml-1">12:32 PM</p>
-    </div>
-    </div>
-    <!-- Sent Message -->
-    <div class="flex gap-4 items-end justify-end">
-    <div class="max-w-[70%] space-y-2 flex flex-col items-end">
-    <div class="bg-primary text-white p-4 rounded-2xl rounded-br-none shadow-md shadow-primary/10 text-sm leading-relaxed">
-                            Hey Jordan! Yes, I just went through them. The color palette looks really solid, especially the orange accents. 
-                        </div>
-    <div class="flex items-center gap-1.5 mr-1">
-    <p class="text-[10px] text-slate-400">12:35 PM</p>
-    <span class="material-symbols-outlined text-primary text-[14px]">done_all</span>
-    </div>
-    </div>
-    </div>
-    <!-- Received Message -->
-    <div class="flex gap-4 items-end">
-    <div class="w-8 h-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Jordan profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFZJrRIuziCpbtBL4gCs9QXQAPsDzMquH1ltIIigklUsESlhuHtt-A8leYTPVdY2-D1fhtDxIwovMEseDp3YnzRPwB1z9ORrdCUUNYi-oFeQ6HJMBp9VWIBSyQ1V4-TeCfbt0jMtD4Y4cwSoaON6alpms6gSVG00PqZuoF-zB_utCOc9kuCYKUwiwzt1_xr7qG4XxKy02wF5kpmywSwcCZ2Xa06F2kBujpXPws39KPypcVI6BR1Zi0RFxsufEuCENyZ90fD5a7U1-0')"></div>
-    <div class="max-w-[70%] space-y-2">
-    <div class="bg-slate-100 dark:bg-background-dark p-4 rounded-2xl rounded-bl-none shadow-sm text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
-                            Glad you like them! I was thinking of making the primary color a bit more vibrant. Can you send the file with the logo mockup? I'd like to test it.
-                        </div>
-    <p class="text-[10px] text-slate-400 ml-1">12:45 PM</p>
-    </div>
-    </div>
-    <!-- Typing Indicator -->
-    <div class="flex gap-4 items-end">
-    <div class="w-8 h-8 rounded-full bg-cover bg-center mb-1 shrink-0" data-alt="Jordan profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8hSMrMZuGXWM3M7a0V5q_6r1oYoj2e-Vyk8do09eauxwj07-nB5F-HFMrpOgW7sTcgKWl7_C4k2tKEpFbOidOQMPNH9UMSwl5BbzU5kThedgLdTL8URBs_2B7K1faCS3MtPtc3ibSf_Ak_fo3ZvOtjZGRgcsBV-Pc6nGdxMW_hI9UJRX6Ble9AqqTlZnRUk-4ycW1jDj3X2CNmT46hn5N4M5mc3cc9kxvT-zaP9SGa1k_9wFUxMW9ZHt0idcjXgYSnLofUx_DYxlY')"></div>
-    <div class="bg-slate-100 dark:bg-background-dark px-4 py-3 rounded-2xl rounded-bl-none shadow-sm">
-    <div class="flex gap-1">
-    <div class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse"></div>
-    <div class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse delay-150"></div>
-    <div class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse delay-300"></div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- ==================== INPUT AREA ==================== -->
-    <footer
-      class="p-6 bg-white dark:bg-background-dark/50 border-t border-primary/5 shrink-0"
-    >
-      <div class="max-w-4xl mx-auto flex items-center gap-4">
-        <div class="flex-1 relative group">
-          <input
-            class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 transition-all outline-none"
-            placeholder="Type your message here..."
-            type="text"
-          />
-        </div>
-        <button
-          class="bg-primary hover:bg-primary/90 text-white p-3 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center"
-        >
-          <span class="material-symbols-outlined">send</span>
-        </button>
-      </div>
-    </footer>
-    </main>
-</body>
+<html class="h-full bg-gray-50" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="true"/>
+<title>Minimal Chat Dashboard</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        screens: {
+          'xs': '375px',
+        }
+      }
+    }
+  }
+</script>
+<style data-purpose="custom-scrollbar">
+    /* Custom scrollbar for a cleaner look */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #e5e7eb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d1d5db;
+    }
+  </style>
+<style data-purpose="layout-tweaks">
+    /* Ensure the dashboard takes up full height without body scrolling */
+    body {
+      overflow: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    input, textarea {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+    .chat-container {
+      height: calc(100vh - 0.25rem);
+      border-radius: 0;
+    }
+    @media (min-width: 640px) {
+      .chat-container {
+        height: calc(100dvh - 0.25rem);
+      }
+    }
+    /* Overlay backdrop for mobile sidebar */
+    #sidebar-overlay {
+      display: none;
+    }
+    #sidebar-overlay.active {
+      display: block;
+    }
+    /* Prevent scrolling when sidebar is open */
+    body.sidebar-open {
+      overflow-x: hidden;
+    }
+    /* Better touch interaction on mobile */
+    button, a {
+      -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+      touch-action: manipulation;
+    }
+    /* User list improvements */
+    #users-list {
+      /* Smooth scrolling */
+      scroll-behavior: smooth;
+    }
+    #users-list > div {
+      /* Smooth selection transition */
+      transition: all 200ms ease-in-out;
+    }
+    #users-list > div[data-selected="true"] {
+      background-color: #ddeaf8;
+      box-shadow: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      #users-list > div[data-selected="true"] {
+        background-color: #1a3a52;
+      }
+    }
+    /* Message area spacing on mobile */
+    @media (max-width: 639px) {
+      #message-container {
+        scroll-behavior: smooth;
+      }
+    }
+    /* Responsive breakpoint */
+    @media (max-width: 374px) {
+      h1, h2 {
+        font-size: 0.875rem;
+      }
+      input {
+        font-size: 14px;
+      }
+    }
+    /* iOS safe area support */
+    @supports (padding: max(0px)) {
+      body {
+        padding-left: max(1px, env(safe-area-inset-left));
+        padding-right: max(1px, env(safe-area-inset-right));
+      }
+    }
+    /* Prevent zoom on input focus in iOS */
+    input, textarea, select {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body class="h-full flex items-center justify-center p-1 xs:p-1 sm:p-4">
+<!-- Sidebar Overlay (Mobile) -->
+<div id="sidebar-overlay" class="hidden fixed inset-0 bg-black/40 z-30 sm:hidden" onclick="document.getElementById('sidebar').classList.add('hidden')"></div>
+<!-- Global Loading Spinner -->
+<div id="dashboard-loading-spinner" class="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm z-50">
+<div class="flex flex-col items-center gap-4">
+<div class="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+<p class="text-sm text-gray-600">Loading chat...</p>
+</div>
+</div>
+<!-- BEGIN: MainDashboardContainer -->
+<main class="chat-container w-full h-[calc(100dvh-0.25rem)] sm:h-[calc(100vh-2rem)] max-w-7xl bg-white sm:rounded-2xl shadow-none sm:shadow-xl flex overflow-hidden border-0 sm:border border-gray-100" data-purpose="dashboard-wrapper">
+<!-- BEGIN: LeftSidebar -->
+<aside id="sidebar" class="hidden sm:flex sm:w-64 lg:w-80 border-r border-gray-100 flex-col bg-gray-50/50 fixed sm:static h-full sm:h-auto z-40 w-full top-0 left-0 sm:z-auto transition-all duration-300" data-purpose="sidebar">
+<!-- Sidebar Header & Search -->
+<div class="p-6 xs:p-7 sm:p-4 space-y-4 xs:space-y-4 sm:space-y-4">
+<div class="flex items-center justify-between">
+<h1 class="text-base sm:text-xl font-bold text-gray-800">Messages</h1>
+<div class="flex items-center gap-2">
+<button id="sidebar-close-btn" class="sm:hidden p-2 hover:bg-gray-200 rounded-full transition-colors">
+<svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button class="p-2 hover:bg-gray-200 rounded-full transition-colors">
+<svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<div class="relative">
+<input class="w-full pl-9 pr-3 py-1.5 sm:py-2 bg-white border border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all outline-none text-xs sm:text-sm" placeholder="Search contacts..." type="text" id="search-input"/>
+<svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 absolute left-3 top-2 sm:top-3 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Contact List -->
+<div class="flex-1 overflow-y-auto" data-purpose="contact-list" id="users-list-container">
+<!-- Users will be populated by JavaScript -->
+</div>
+<!-- Sidebar Footer: Google Sign-In Integrated -->
+<div class="p-6 xs:p-7 sm:p-4 border-t border-gray-100 bg-white" data-purpose="user-auth-section">
+<div class="flex items-center justify-between mb-3 sm:mb-4">
+<div class="flex items-center space-x-2 min-w-0">
+<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
+<svg class="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="text-xs sm:text-sm font-medium text-gray-600 truncate" id="current-user-name">Loading...</span>
+</div>
+</div>
+<!-- Logout Button -->
+<button id="logout-btn" class="w-full flex items-center justify-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 border border-red-300 rounded-lg bg-red-50 text-xs sm:text-sm font-medium text-red-700 hover:bg-red-100 transition-colors shadow-sm">
+<svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+</svg>
+<span class="hidden xs:inline">Logout</span>
+</button>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainChatArea -->
+<section class="flex-1 flex flex-col bg-white w-full sm:flex-1" data-purpose="chat-view">
+<!-- Chat Header -->
+<header class="h-12 xs:h-13 sm:h-16 border-b border-gray-100 flex items-center justify-between px-2 xs:px-3 sm:px-6 shrink-0 gap-2">
+<div class="flex items-center gap-1.5 sm:gap-3 flex-1 min-w-0">
+<button id="sidebar-toggle-btn" class="sm:hidden p-1.5 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0">
+<svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div id="selected-user-info" class="hidden flex items-center gap-1.5 sm:gap-3 flex-1 min-w-0">
+<div class="relative flex-shrink-0">
+<img alt="Selected User" class="w-7 h-7 sm:w-10 sm:h-10 rounded-full" id="selected-user-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='%23e5e7eb' width='24' height='24'/%3E%3C/svg%3E"/>
+<span class="absolute bottom-0 right-0 block h-1.5 w-1.5 sm:h-2.5 sm:w-2.5 rounded-full bg-gray-400 ring-2 ring-white"></span>
+</div>
+<div class="min-w-0">
+<h2 class="text-xs sm:text-sm font-bold text-gray-800 truncate" id="selected-user-name">Select a contact</h2>
+<p class="text-[9px] sm:text-[11px] text-gray-500 font-medium truncate" id="selected-user-status-text">Offline</p>
+</div>
+</div>
+</header>
+<!-- Message History -->
+<div class="flex-1 overflow-y-auto px-6 xs:px-8 sm:px-6 py-12 xs:py-16 sm:py-8 space-y-4 xs:space-y-5 sm:space-y-6" data-purpose="message-history" id="message-container">
+<!-- Messages will be populated by JavaScript -->
+</div>
+<!-- Chat Input -->
+<div id="chat-input-container" class="hidden px-4 xs:px-6 sm:p-4 pt-6 xs:pt-8 sm:pt-4 pb-8 xs:pb-10 sm:pb-4 border-t border-gray-100 bg-white" data-purpose="chat-input-container">
+<form class="flex items-end gap-1.5 xs:gap-2 sm:gap-3" id="chat-form">
+<button class="hidden xs:block p-1.5 text-gray-400 hover:text-blue-500 transition-colors flex-shrink-0" type="button">
+<svg class="h-4 w-4 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="flex-1 relative min-w-0">
+<input class="w-full py-2 xs:py-2 sm:py-3 px-2.5 xs:px-3 sm:px-4 bg-gray-50 border-none rounded-lg xs:rounded-2xl focus:ring-2 focus:ring-blue-400 transition-all outline-none text-xs xs:text-sm" id="message-input" placeholder="Message..." type="text"/>
+<div id="emoji-picker-panel" class="hidden absolute bottom-full right-0 mb-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 grid grid-cols-6 gap-2 max-w-xs">
+<!-- Emojis will be populated by JavaScript -->
+</div>
+<button id="emoji-btn" class="hidden xs:block absolute right-1.5 xs:right-2 sm:right-3 top-2 xs:top-2 sm:top-2.5 text-gray-400 hover:text-blue-500 flex-shrink-0" type="button">
+<svg class="h-4 w-4 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<button class="bg-blue-500 text-white p-2 xs:p-2 sm:p-3 rounded-lg xs:rounded-xl hover:bg-blue-600 transition-all shadow-lg shadow-blue-300 flex-shrink-0 min-h-[2.25rem] min-w-[2.25rem]" id="send-btn" type="button">
+<svg class="h-5 w-5 sm:h-5 sm:w-5 transform rotate-90 mx-auto" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</form>
+</div>
+</section>
+<!-- END: MainChatArea -->
+</main>
+<!-- END: MainDashboardContainer -->
 <script type="module" src="./js/chat.js"></script>
+</body>
 </html>
